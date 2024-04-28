@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
+import {TaskManagerService} from "../Service/task-manager.service";
+import {catchError, finalize} from "rxjs";
 
 
 @Component({
@@ -18,7 +20,26 @@ export class HomeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  constructor(
+    private taskManagerService: TaskManagerService
+  ) {
+  }
+
   ngOnInit(): void {
+    this.taskManagerService.getAllTasks().pipe(
+      catchError(error => {
+        alert('Error in getting tasks list');
+        throw error;
+      }),
+      finalize(() => {
+        }
+      )
+    ).subscribe(
+      result => {
+        debugger
+        console.log(result)
+      }
+    )
   }
 }
 
