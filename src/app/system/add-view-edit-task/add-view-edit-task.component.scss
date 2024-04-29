@@ -1,3 +1,22 @@
+.component-header {
+  text-align: center;
+  margin-top: 5px;
+}
+
 .example-full-width .mat-form-field-flex {
   align-items: center; /* Ensure alignment is centered */
+}
+
+hr {
+  margin: 0;
+}
+
+.action-button {
+  align-items: end;
+}
+
+.action-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
 }
