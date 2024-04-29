@@ -18,12 +18,14 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DatePipe} from "@angular/common";
 import {MatDialogModule} from "@angular/material/dialog";
+import { UserConfirmationComponent } from './system/user-confirmation/user-confirmation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AddViewEditTaskComponent
+    AddViewEditTaskComponent,
+    UserConfirmationComponent
   ],
     imports: [
         BrowserModule,

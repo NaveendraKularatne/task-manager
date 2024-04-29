@@ -1,0 +1,32 @@
+<h1 mat-dialog-title style="text-align: center">
+  User Confirmation
+</h1>
+<hr>
+
+<div *ngIf="true" class="d-flex justify-content-center align-items-center">
+  <span> {{ user_message }} </span>
+</div>
+
+<div *ngIf="!afterResponse" class="row mt-3">
+  <div class="col-md-1"></div>
+  <div class="col-md-10 d-flex justify-content-between align-items-center">
+    <button mat-stroked-button color="warn" mat-dialog-close
+            class="cancelBtn me-2">Cancel
+    </button>
+    <button mat-stroked-button color="primary"
+            class="confirmBtn" (click)="deleteTaskById()" [disabled]="disableConfirmBtn">Confirm
+    </button>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+
+<!--  After response  -->
+<div *ngIf="afterResponse" class="row mt-3">
+  <div class="col-md-1"></div>
+  <div class="col-md-10" style="text-align: center">
+    <button mat-stroked-button color="warn" mat-dialog-close
+            class="cancelBtn me-2">Close
+    </button>
+  </div>
+  <div class="col-md-1"></div>
+</div>
