@@ -29,8 +29,16 @@ table {
   width: 100%;
 }
 
+.mat-row:hover {
+  background-color: #f1f5f9 !important;
+}
+
 .action-button-row {
   example-button-row button {
     margin-right: 8px;
   }
+}
+
+.add-view-edit {
+  margin-top: 25px;
 }
