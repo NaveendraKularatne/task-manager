@@ -11,8 +11,8 @@ import {catchError, finalize} from "rxjs";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['position', 'title', 'description', 'duedate', 'action'];
+  dataSource: any = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -36,8 +36,9 @@ export class HomeComponent implements OnInit {
       )
     ).subscribe(
       result => {
-        debugger
-        console.log(result)
+        if (result != undefined) {
+          this.dataSource = result;
+        }
       }
     )
   }
