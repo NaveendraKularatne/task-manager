@@ -1,0 +1,30 @@
+<div *ngIf="true" class="row mt-2">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="me-3 mb-0 ms-3 border ps-3 pe-3" style="font-size: 14px">
+
+      <!--Row 1-->
+      <div class="row align-items-center p-2">
+        <div class="col-md-4 d-flex align-items-center">
+          <label for="taskTitle" class="form-label">
+            <span><span style="color: red">*</span>Title :</span>
+          </label>
+        </div>
+        <div class="col-md-8">
+          <mat-form-field class="example-full-width" [style.width.%]=90>
+                <textarea matInput #message maxlength="150" id="taskTitle"
+                          [formControl]="task_title"></textarea>
+            <mat-hint align="end" style="display: block">{{ message.value.length }} / 150</mat-hint>
+          </mat-form-field>
+          <!--          <mat-error *ngIf="isCommentEmpty">-->
+          <!--            {{ validationMsg_emptyMessage }}-->
+          <!--          </mat-error>-->
+        </div>
+      </div>
+
+      <!--Row 2-->
+      <!--Row 3-->
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
