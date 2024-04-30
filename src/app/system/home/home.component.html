@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<button style="margin-left: 15px" mat-raised-button color="primary" (click)="addTask()">Add task</button>
+<button style="margin-left: 15px" mat-raised-button color="primary" (click)="onAddButtonClick()">Add task</button>
 
 <div class="mat-elevation-z3 table-container">
   <table mat-table [dataSource]="dataSource">
@@ -39,7 +39,7 @@
       <th mat-header-cell *matHeaderCellDef style="text-align: center"> Action</th>
       <td mat-cell *matCellDef="let element" style="text-align: center">
         <div class="action-button-row">
-          <button mat-raised-button color="primary">Edit</button>
+          <button mat-raised-button color="primary" (click)="onEditButtonClicked(element)">Edit</button>
           <button style="margin-left: 5px" mat-raised-button color="warn" (click)="onDelete(element)">Delete</button>
         </div>
       </td>
@@ -59,7 +59,12 @@
   <div class="col-md-8">
     <div class="add-view-edit">
       <app-add-view-edit-task
+        #addViewEditTaskComponent
         *ngIf="displayAddViewEditComponent"
+        [mode]="mode"
+        [selectedTask]="selectedTask"
+        [actionTitle]="actionTitle"
+        [buttonName]="buttonName"
         (cancelButtonClick)="hideAddViewEditComponent($event)">
       </app-add-view-edit-task>
     </div>

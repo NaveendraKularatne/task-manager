@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RestURL} from "../shared/RestURL";
-import {TaskManagerModel} from "../model/task-manager.model";
+import {Task} from "../model/task";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -16,11 +16,11 @@ export class TaskManagerService {
     return this.httpClient.get<any>(RestURL.getAllTasks).pipe();
   }
 
-  addTask(taskManagerModel: TaskManagerModel) {
+  addTask(taskManagerModel: Task) {
     return this.httpClient.post<any>(RestURL.addTask, taskManagerModel)
   }
 
-  updateTaskById(id: String, taskManagerModel: TaskManagerModel) {
+  updateTaskById(id: String, taskManagerModel: Task) {
     return this.httpClient.put<any>(RestURL.updateTaskById + '/' + id, taskManagerModel)
   }
 

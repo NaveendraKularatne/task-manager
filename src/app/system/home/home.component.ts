@@ -5,7 +5,9 @@ import {catchError} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {UserConfirmationComponent} from "../user-confirmation/user-confirmation.component";
 import {Router} from "@angular/router";
-
+import {ActionMode} from "../shared/ActionMode";
+import {Task} from "../model/task";
+import {AddViewEditTaskComponent} from "../add-view-edit-task/add-view-edit-task.component";
 
 @Component({
   selector: 'app-home',
@@ -16,8 +18,15 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['position', 'title', 'description', 'duedate', 'action'];
   dataSource: any = [];
   displayAddViewEditComponent: boolean = false;
+  mode: string | undefined;
+  selectedTask: Task = new Task();
+  actionTitle: string = 'Add New Task';
+  buttonName: string = 'Save';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild('addViewEditTaskComponent')
+  addViewEditTask: AddViewEditTaskComponent | undefined;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -66,11 +75,33 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  addTask(): void {
+  onAddButtonClick(): void {
+    this.actionTitle = 'Add New Task';
+    this.buttonName = 'Save';
+    this.mode = ActionMode.ADD;
     this.displayAddViewEditComponent = true;
+
+    setTimeout(() => {
+      if (this.addViewEditTask) {
+        this.addViewEditTask.clearTaskData();
+      }
+    });
   }
 
   hideAddViewEditComponent($event: boolean): void {
     this.displayAddViewEditComponent = $event;
+  }
+
+  onEditButtonClicked(task: Task): void {
+    this.buttonName = 'Update';
+    this.actionTitle = 'Edit Task';
+    this.mode = ActionMode.EDIT;
+    this.selectedTask = task;
+    this.displayAddViewEditComponent = true;
+    setTimeout(() => {
+      if (this.addViewEditTask) {
+        this.addViewEditTask.setTaskData();
+      }
+    });
   }
 }
