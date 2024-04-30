@@ -1,8 +1,9 @@
-const mainURL = 'http://localhost:8080/';
+const mainURL = 'http://localhost:8080/api';
 
 export const RestURL = {
-  getAllTasks           : mainURL + 'api/tasks',
-  addTask               : mainURL + 'api/tasks/add',
-  updateTaskById        : mainURL + 'api/tasks/update',
-  deleteTaskById        : mainURL + 'api/tasks/delete'
+  login                 : mainURL + '/auth/login',
+  getAllTasks           : mainURL + '/tasks',
+  addTask               : mainURL + '/tasks/add',
+  updateTaskById        : mainURL + '/tasks/update',
+  deleteTaskById        : mainURL + '/tasks/delete'
 }

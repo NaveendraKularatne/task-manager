@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {TaskManagerService} from "../Service/task-manager.service";
+import {TaskManagerService} from "../service/task-manager.service";
 import {catchError, finalize, tap} from "rxjs";
 
 @Component({

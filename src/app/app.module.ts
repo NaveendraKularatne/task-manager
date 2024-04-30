@@ -19,31 +19,35 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {DatePipe} from "@angular/common";
 import {MatDialogModule} from "@angular/material/dialog";
 import { UserConfirmationComponent } from './system/user-confirmation/user-confirmation.component';
+import { LoginComponent } from './system/login/login.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AddViewEditTaskComponent,
-    UserConfirmationComponent
+    UserConfirmationComponent,
+    LoginComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MaterialModule,
-        BrowserAnimationsModule,
-        MatPaginatorModule,
-        MatTableModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        FormsModule,
-        MatDialogModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    MatDialogModule,
+    MatCardModule
+  ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })

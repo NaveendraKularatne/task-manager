@@ -1,10 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {TaskManagerService} from "../Service/task-manager.service";
+import {TaskManagerService} from "../service/task-manager.service";
 import {catchError, finalize} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {UserConfirmationComponent} from "../user-confirmation/user-confirmation.component";
+import {HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -24,26 +26,38 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private taskManagerService: TaskManagerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.taskManagerService.getAllTasks().pipe(
+    this.retrieveTaskList();
+  }
+
+  getAuthToken(): string | null {
+    return window.localStorage.getItem('auth_token');
+  }
+
+  retrieveTaskList(): void {
+    let headers: HttpHeaders = new HttpHeaders();
+
+    if (this.getAuthToken() !== null) {
+      headers = headers.set("Authorization", "Bearer " + this.getAuthToken());
+    }
+
+    this.taskManagerService.getAllTasks(headers).pipe(
       catchError(error => {
-        alert('Error in getting tasks list');
+        this.router.navigate(['/login']);
         throw error;
-      }),
-      finalize(() => {
-        }
-      )
+      })
     ).subscribe(
       result => {
         if (result != undefined) {
           this.dataSource = result;
         }
       }
-    )
+    );
   }
 
   onDelete(element: { id: any; }) {
