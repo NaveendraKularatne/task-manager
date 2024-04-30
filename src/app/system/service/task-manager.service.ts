@@ -12,8 +12,8 @@ export class TaskManagerService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllTasks(headers?: HttpHeaders): Observable<any> {
-    return this.httpClient.get<any>(RestURL.getAllTasks, { headers }).pipe();
+  getAllTasks(): Observable<any> {
+    return this.httpClient.get<any>(RestURL.getAllTasks).pipe();
   }
 
   addTask(taskManagerModel: TaskManagerModel) {

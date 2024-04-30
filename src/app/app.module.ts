@@ -8,7 +8,7 @@ import {MaterialModule} from "./material/material.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatButtonModule} from "@angular/material/button";
 import { AddViewEditTaskComponent } from './system/add-view-edit-task/add-view-edit-task.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -21,6 +21,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { UserConfirmationComponent } from './system/user-confirmation/user-confirmation.component';
 import { LoginComponent } from './system/login/login.component';
 import {MatCardModule} from "@angular/material/card";
+import {CommonInterceptor} from "./common.interceptor";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,14 @@ import {MatCardModule} from "@angular/material/card";
     MatDialogModule,
     MatCardModule
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CommonInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

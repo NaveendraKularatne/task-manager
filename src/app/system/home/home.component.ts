@@ -40,13 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   retrieveTaskList(): void {
-    let headers: HttpHeaders = new HttpHeaders();
-
-    if (this.getAuthToken() !== null) {
-      headers = headers.set("Authorization", "Bearer " + this.getAuthToken());
-    }
-
-    this.taskManagerService.getAllTasks(headers).pipe(
+    this.taskManagerService.getAllTasks().pipe(
       catchError(error => {
         this.router.navigate(['/login']);
         throw error;
