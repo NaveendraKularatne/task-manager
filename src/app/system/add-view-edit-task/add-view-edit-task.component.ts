@@ -29,13 +29,12 @@ export class AddViewEditTaskComponent implements OnInit {
   task_title = new FormControl('', Validators.required);
   task_description = new FormControl('', Validators.required);
   minDate!: Date;
-  date!: Date;
+  date: Date | null = null;
   formattedDate!: string | null;
 
 
   constructor(private datePipe: DatePipe) {
-    const current = new Date();
-    this.minDate = new Date(current.getFullYear(), current.getMonth(), current.getDate());
+    this.minDate = new Date();
   }
 
 
@@ -56,13 +55,14 @@ export class AddViewEditTaskComponent implements OnInit {
   setTaskData(): void {
     this.task_title.setValue(this.selectedTask.title);
     this.task_description.setValue(this.selectedTask.description);
-    this.date = this.selectedTask.duedate;
+    this.date = new Date(this.selectedTask.duedate);
     this.changeDateFormat();
   }
 
   clearTaskData(): void {
     this.task_title.setValue(null);
     this.task_description.setValue(null);
+    this.date = null;
   }
 
 }

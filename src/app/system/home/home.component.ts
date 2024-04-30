@@ -16,7 +16,7 @@ import {AddViewEditTaskComponent} from "../add-view-edit-task/add-view-edit-task
 })
 export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['position', 'title', 'description', 'duedate', 'action'];
-  dataSource: any = [];
+  dataSource: Task[] = [];
   displayAddViewEditComponent: boolean = false;
   mode: string | undefined;
   selectedTask: Task = new Task();

@@ -31,7 +31,7 @@
     <!-- Due date Column -->
     <ng-container matColumnDef="duedate">
       <th mat-header-cell *matHeaderCellDef> Due Date</th>
-      <td mat-cell *matCellDef="let element"> {{ element.duedate }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.duedate | date:'yyyy-MM-dd' }}</td>
     </ng-container>
 
     <!-- Action Column -->
