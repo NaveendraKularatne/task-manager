@@ -5,5 +5,5 @@ export const RestURL = {
   getAllTasks           : mainURL + '/tasks',
   addTask               : mainURL + '/tasks',
   updateTaskById        : mainURL + '/tasks',
-  deleteTaskById        : mainURL + '/tasks/delete'
+  deleteTaskById        : mainURL + '/tasks'
 }
