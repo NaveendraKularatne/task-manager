@@ -105,7 +105,44 @@ export class AddViewEditTaskComponent implements OnInit {
           if (result != undefined) {
             Swal.fire({
               title: "Task Added!",
-              text: "Task Added Successfully!",
+              text: "Task Added Successfully",
+              icon: "success"
+            });
+            this.clearTaskData();
+            this.reloadTaskList.emit();
+            this.closeAddEditWindow.emit(true);
+          }
+        }
+      );
+    } else if (this.mode === ActionMode.EDIT) {
+      const newTask: Task = new Task();
+      newTask.id = this.selectedTask.id;
+      if (this.task_title.value) {
+        newTask.title = this.task_title.value;
+      } else {
+        this.displayTitleError = true;
+      }
+
+      if (this.task_description.value) {
+        newTask.description = this.task_description.value;
+      }
+
+      if (this.date) {
+        newTask.duedate = this.date;
+      } else {
+        this.displayDueDateError = true;
+      }
+
+      this.taskService.updateTaskById(this.selectedTask.id, newTask).pipe(
+        catchError(error => {
+          throw error;
+        })
+      ).subscribe(
+        result => {
+          if (result != undefined) {
+            Swal.fire({
+              title: "Task Updated!",
+              text: "Task Updated Successfully",
               icon: "success"
             });
             this.clearTaskData();

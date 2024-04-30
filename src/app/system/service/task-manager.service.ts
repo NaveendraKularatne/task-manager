@@ -20,7 +20,7 @@ export class TaskManagerService {
     return this.httpClient.post<any>(RestURL.addTask, taskManagerModel)
   }
 
-  updateTaskById(id: String, taskManagerModel: Task) {
+  updateTaskById(id: number, taskManagerModel: Task) {
     return this.httpClient.put<any>(RestURL.updateTaskById + '/' + id, taskManagerModel)
   }
 

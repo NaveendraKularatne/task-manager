@@ -4,6 +4,6 @@ export const RestURL = {
   login                 : mainURL + '/auth/login',
   getAllTasks           : mainURL + '/tasks',
   addTask               : mainURL + '/tasks',
-  updateTaskById        : mainURL + '/tasks/update',
+  updateTaskById        : mainURL + '/tasks',
   deleteTaskById        : mainURL + '/tasks/delete'
 }

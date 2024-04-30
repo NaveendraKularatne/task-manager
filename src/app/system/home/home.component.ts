@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
 import {TaskManagerService} from "../service/task-manager.service";
 import {catchError} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
@@ -23,14 +22,8 @@ export class HomeComponent implements OnInit {
   actionTitle: string = 'Add New Task';
   buttonName: string = 'Save';
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   @ViewChild('addViewEditTaskComponent')
   addViewEditTask: AddViewEditTaskComponent | undefined;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
 
   constructor(
     private taskManagerService: TaskManagerService,
