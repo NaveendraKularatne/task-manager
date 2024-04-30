@@ -65,7 +65,9 @@
         [selectedTask]="selectedTask"
         [actionTitle]="actionTitle"
         [buttonName]="buttonName"
-        (cancelButtonClick)="hideAddViewEditComponent($event)">
+        (cancelButtonClick)="hideAddViewEditComponent($event)"
+        (reloadTaskList)="retrieveTaskList()"
+        (closeAddEditWindow)="closeAddEditWindow()">
       </app-add-view-edit-task>
     </div>
   </div>

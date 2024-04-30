@@ -104,4 +104,8 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  closeAddEditWindow() {
+    this.displayAddViewEditComponent = false;
+  }
 }

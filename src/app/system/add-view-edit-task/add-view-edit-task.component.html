@@ -20,9 +20,9 @@
                           [formControl]="task_title"></textarea>
             <mat-hint align="end" style="display: block">{{ message.value.length }} / 150</mat-hint>
           </mat-form-field>
-          <!--          <mat-error *ngIf="isCommentEmpty">-->
-          <!--            {{ validationMsg_emptyMessage }}-->
-          <!--          </mat-error>-->
+          <mat-error *ngIf="displayTitleError">
+            {{ validationMsgTitleError }}
+          </mat-error>
         </div>
       </div>
       <hr class="hr-class">
@@ -40,9 +40,6 @@
                           [formControl]="task_description"></textarea>
             <mat-hint align="end" style="display: block">{{ description.value.length }} / 255</mat-hint>
           </mat-form-field>
-          <!--          <mat-error *ngIf="isCommentEmpty">-->
-          <!--            {{ validationMsg_emptyMessage }}-->
-          <!--          </mat-error>-->
         </div>
       </div>
       <hr>
@@ -61,15 +58,15 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
-          <!--          <mat-error *ngIf="isCommentEmpty">-->
-          <!--            {{ validationMsg_emptyMessage }}-->
-          <!--          </mat-error>-->
+          <mat-error *ngIf="displayDueDateError">
+            {{ validationMsgDueDateError }}
+          </mat-error>
         </div>
       </div>
 
       <div class="action-btn-container">
         <button class="btn btn-danger action-btn mr-2" (click)="cancel()">Cancel</button>
-        <button class="btn btn-info action-btn">{{ buttonName }}</button>
+        <button class="btn btn-info action-btn" (click)="addOrUpdateTask()">{{ buttonName }}</button>
       </div>
 
     </div>
