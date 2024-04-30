@@ -6,6 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {RestURL} from "./system/shared/RestURL";
 
 @Injectable()
 export class CommonInterceptor implements HttpInterceptor {
@@ -13,11 +14,15 @@ export class CommonInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authReq = request.clone({
-      headers: request.headers.set('Authorization', 'Bearer ' + this.getAuthToken())
-    });
+    if (request.url === RestURL.login) {
+      return next.handle(request);
+    } else {
+      const authReq = request.clone({
+        headers: request.headers.set('Authorization', 'Bearer ' + this.getAuthToken())
+      });
 
-    return next.handle(authReq);
+      return next.handle(authReq);
+    }
   }
 
   getAuthToken(): string | null {
