@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 
@@ -17,6 +17,9 @@ export class AddViewEditTaskComponent implements OnInit {
   buttonName: string = 'Update';
   title: any = 'Update the title';
 
+  @Output()
+  cancelButtonClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   constructor(private datePipe: DatePipe) {
     const current = new Date();
     this.minDate = new Date(current.getFullYear(), current.getMonth(), current.getDate());
@@ -31,5 +34,9 @@ export class AddViewEditTaskComponent implements OnInit {
     console.log(this.date)
     this.formattedDate = this.datePipe.transform(this.date, 'yyyy-MM-dd')
     console.log(this.formattedDate)
+  }
+
+  cancel() {
+    this.cancelButtonClick.emit(false);
   }
 }

@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<button style="margin-left: 15px" mat-raised-button color="primary">Add task</button>
+<button style="margin-left: 15px" mat-raised-button color="primary" (click)="addTask()">Add task</button>
 
 <div class="mat-elevation-z3 table-container">
   <table mat-table [dataSource]="dataSource">
@@ -58,7 +58,9 @@
 <div class="add-view-edit-container">
   <div class="col-md-8">
     <div class="add-view-edit">
-      <app-add-view-edit-task>
+      <app-add-view-edit-task
+        *ngIf="displayAddViewEditComponent"
+        (cancelButtonClick)="hideAddViewEditComponent($event)">
       </app-add-view-edit-task>
     </div>
   </div>

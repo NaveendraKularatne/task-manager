@@ -1,11 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {TaskManagerService} from "../service/task-manager.service";
-import {catchError, finalize} from "rxjs";
+import {catchError} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {UserConfirmationComponent} from "../user-confirmation/user-confirmation.component";
-import {HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 
 
@@ -17,6 +15,7 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['position', 'title', 'description', 'duedate', 'action'];
   dataSource: any = [];
+  displayAddViewEditComponent: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -65,16 +64,13 @@ export class HomeComponent implements OnInit {
     userConfirmation.afterClosed().subscribe(result => {
       this.ngOnInit();
     });
+  }
 
+  addTask(): void {
+    this.displayAddViewEditComponent = true;
+  }
 
-    // if (confirm('Are you sure you want to delete this item?')) {
-    //   this.taskManagerService.deleteTaskById(element.id).subscribe({
-    //     next: (res) => {
-    //       this.dataSource = this.dataSource.filter((item: { id: any; }) => item.id !== element.id);
-    //       console.log('Item deleted successfully!');
-    //     },
-    //     error: (err) => console.error('Error deleting item: ', err)
-    //   });
-    // }
+  hideAddViewEditComponent($event: boolean): void {
+    this.displayAddViewEditComponent = $event;
   }
 }
