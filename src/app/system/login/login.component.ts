@@ -17,11 +17,11 @@ export class LoginComponent implements OnInit {
   isLoginErrorOccurred: boolean = false;
   validationCredentialsError: string = '';
 
-
   constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.authService.logout();
   }
 
   login() {
