@@ -11,11 +11,11 @@
             <mat-card-content>
               <mat-form-field class="example-full-width">
                 <mat-label>UserName</mat-label>
-                <input matInput [formControl]="name"/>
+                <input matInput [formControl]="name" (click)="checkUserNamePassword()"/>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password"/>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" (click)="checkUserNamePassword()"/>
                 <button
                   mat-icon-button
                   matSuffix
@@ -29,6 +29,9 @@
                   </mat-icon>
                 </button>
               </mat-form-field>
+              <mat-error *ngIf="isLoginErrorOccurred">
+                {{ validationCredentialsError }}
+              </mat-error>
             </mat-card-content>
             <button type="submit" class="btn btn-outline-primary btn-sm ps-4 pe-4 mb-1" (click)="login()">Log in
             </button>
