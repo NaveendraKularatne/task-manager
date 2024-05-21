@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     user.password = this.password.value;
     this.authService.login(user).pipe(
       catchError(error => {
-        if (error.error.message === 'Invalid credentials' && error.status == 401) {
+        if (error.status == 400 || error.status == 401 || error.status == 500) {
           this.validationCredentialsError = error.error.message;
           this.isLoginErrorOccurred = true;
         }

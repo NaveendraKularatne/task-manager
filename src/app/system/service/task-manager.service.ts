@@ -13,7 +13,7 @@ export class TaskManagerService {
   }
 
   getAllTasks(): Observable<any> {
-    return this.httpClient.get<any>(RestURL.getAllTasks).pipe();
+    return this.httpClient.get<any>(RestURL.getAllTasks);
   }
 
   addTask(taskManagerModel: Task) {
